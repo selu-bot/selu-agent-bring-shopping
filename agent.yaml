@@ -1,0 +1,9 @@
+id: bring-shopping
+name: Bring Shopping Assistant
+routing: inline
+session:
+  trigger: mention
+  idle_timeout_minutes: 30
+memory:
+  policy: none
+  top_k: 0
