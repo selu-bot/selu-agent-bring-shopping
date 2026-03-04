@@ -1,0 +1,12 @@
+{
+  "name": "selu-cap-bring-shopping",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Selu capability wrapper for bring-mcp",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.11.3",
+    "@grpc/proto-loader": "^0.7.13"
+  }
+}

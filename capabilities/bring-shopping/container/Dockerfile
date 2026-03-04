@@ -1,39 +1,20 @@
-FROM python:3.12-slim AS builder
+FROM node:22-slim
 
-WORKDIR /build
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY capability.proto .
-RUN python -m grpc_tools.protoc \
-    --proto_path=. \
-    --python_out=. \
-    --grpc_python_out=. \
-    capability.proto
-
-FROM python:3.12-slim
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends nodejs npm \
-    && npm install -g bring-mcp@0.9.2-beta \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
-
-RUN groupadd -g 1000 selu && useradd -u 1000 -g 1000 -m selu
+ENV NODE_ENV=production
+ARG BRING_MCP_NPM_VERSION=latest
 
 WORKDIR /app
 
-COPY server.py .
-COPY --from=builder /build/capability_pb2.py .
-COPY --from=builder /build/capability_pb2_grpc.py .
+COPY package.json .
+RUN npm install --omit=dev && npm cache clean --force
 
-USER 1000:1000
+RUN npm install -g "bring-mcp@${BRING_MCP_NPM_VERSION}" && npm cache clean --force
+
+COPY capability.proto .
+COPY server.js .
+
+USER node
 
 EXPOSE 50051
 
-CMD ["python", "server.py"]
+CMD ["node", "server.js"]
