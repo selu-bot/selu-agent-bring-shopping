@@ -1,0 +1,10 @@
+id: bring-shopping
+name: Bring Shopping Assistant
+i18n:
+  default_locale: de
+  supported_locales:
+    - de
+routing: inline
+session:
+  trigger: mention
+  idle_timeout_minutes: 30

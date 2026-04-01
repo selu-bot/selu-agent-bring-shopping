@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package selu.capability.v1;
+
+service Capability {
+  rpc Invoke(InvokeRequest) returns (InvokeResponse);
+  rpc StreamInvoke(InvokeRequest) returns (stream InvokeChunk);
+  rpc Healthcheck(HealthRequest) returns (HealthResponse);
+}
+
+message InvokeRequest {
+  string tool_name = 1;
+  bytes args_json = 2;
+  bytes config_json = 3;
+  string session_id = 4;
+  string capability_id = 5;
+}
+
+message InvokeResponse {
+  bytes result_json = 1;
+  string error = 2;
+}
+
+message InvokeChunk {
+  bytes data = 1;
+  bool done = 2;
+  string error = 3;
+}
+
+message HealthRequest {}
+
+message HealthResponse {
+  bool ready = 1;
+  string message = 2;
+}

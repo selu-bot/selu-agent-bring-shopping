@@ -1,0 +1,25 @@
+agent:
+  name: Bring Einkaufsassistent
+  description: Hilft dir, Bring-Einkaufslisten schnell zu verwalten.
+  long_description: Dieser Agent verwaltet Bring-Listen, fuegt Artikel hinzu, entfernt Eintraege und hilft beim strukturierten Abarbeiten deiner Einkaufslisten.
+
+approval:
+  tools:
+    bring-shopping__getDefaultList:
+      label: Standardliste abrufen
+      message: Ich moechte zuerst deine Standardliste bei Bring abrufen.
+    bring-shopping__getItems:
+      label: Listeneintraege laden
+      message: Ich moechte die aktuellen Eintraege der Bring-Liste laden.
+    bring-shopping__saveItem:
+      label: Artikel hinzufuegen
+      message: Ich moechte einen Artikel zu deiner Bring-Liste hinzufuegen.
+    bring-shopping__saveItemBatch:
+      label: Mehrere Artikel hinzufuegen
+      message: Ich moechte mehrere Artikel gesammelt zu deiner Bring-Liste hinzufuegen.
+    bring-shopping__removeItem:
+      label: Artikel entfernen
+      message: Ich moechte einen Artikel aus deiner Bring-Liste entfernen.
+    bring-shopping__deleteMultipleItemsFromList:
+      label: Mehrere Artikel loeschen
+      message: Ich moechte mehrere Artikel aus deiner Bring-Liste loeschen.

@@ -1,0 +1,30 @@
+id: bring-shopping
+class: tool
+image: selu-cap-bring-shopping:latest
+tool_source: dynamic
+discovery_tool_name: list_tools
+tools: []
+
+network:
+  mode: allowlist
+  hosts:
+    - "*.getbring.com:443"
+    - "*.bring.com:443"
+
+filesystem: temp
+
+credentials:
+  - name: MAIL
+    scope: user
+    required: true
+    description: "Bring account email"
+  - name: PW
+    scope: user
+    required: true
+    description: "Bring account password"
+
+resources:
+  max_memory_mb: 256
+  max_cpu_fraction: 0.5
+  max_cpu_seconds: 30
+  pids_limit: 64
